@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">UnsplashProject</string>
+    <string name="title_search">Search</string>
+    <string name="title_latest_picture">Picture</string>
+    <string name="title_setting">Setting</string>
+    <string name="input_text">Photo Search Input</string>
+
+    <string name="button_search">search</string>
+    <string name="button_clear">clear</string>
+</resources>
