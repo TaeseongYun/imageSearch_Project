@@ -7,7 +7,8 @@ import tech.tsdev.unsplashproject.data.Result
 import tech.tsdev.unsplashproject.view.main.home.adapter.holder.ImageViewHolder
 import tech.tsdev.unsplashproject.view.main.home.adapter.model.ImageRecyclerModel
 
-class ImageRecyclerAdapter(private val context: Context?) : RecyclerView.Adapter<RecyclerView.ViewHolder>(), ImageRecyclerModel {
+class ImageRecyclerAdapter(private val context: Context?) : RecyclerView.Adapter<RecyclerView.ViewHolder>()
+    , ImageRecyclerModel {
 
 
     private val list = mutableListOf<Result>()
@@ -32,7 +33,5 @@ class ImageRecyclerAdapter(private val context: Context?) : RecyclerView.Adapter
 
     override fun notifyDataSetChang()
             = notifyDataSetChanged()
-
-
 
 }

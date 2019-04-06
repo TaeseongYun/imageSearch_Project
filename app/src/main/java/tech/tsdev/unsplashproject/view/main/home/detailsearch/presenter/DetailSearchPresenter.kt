@@ -26,6 +26,7 @@ class DetailSearchPresenter(val view: DetailSearchContract.View,
 
                 override fun onResponse(call: Call<PhotosResponse>, response: Response<PhotosResponse>?) {
                     if(response?.isSuccessful == true) {
+
                         response.body()?.let {
                             it.results.forEach { result ->
                                 imageRecyclerModel.addItem(result)
@@ -38,7 +39,6 @@ class DetailSearchPresenter(val view: DetailSearchContract.View,
                     isLoading = false
                 }
             })
-
     }
 
 }

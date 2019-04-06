@@ -14,7 +14,7 @@ class SearchPresenter(val view: SearchContract.View,
 
 
     var isLoading = false
-    private var page = 0
+    private var page = 2
     private val perPage = 50
 
     override fun loadImage() {
@@ -33,6 +33,7 @@ class SearchPresenter(val view: SearchContract.View,
                 override fun onResponse(call: Call<PhotosResponse>, response: Response<PhotosResponse>?) {
                     if(response?.isSuccessful == true) {
                         response.body()?.let {
+
                             it.results.forEach {result ->
                                 imageRecyclerModel.addItem(result)
                             }

@@ -37,11 +37,11 @@ class DetailSearch : AppCompatActivity(), DetailSearchContract.View {
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
             super.onScrolled(recyclerView, dx, dy)
 
-            val visibleItem = recyclerView.childCount as Int
+            val visibleItem = recyclerView.childCount
             val totalItemCount = imageRecyclerAdapter.itemCount
             val firstVisibleItem = (recyclerView.layoutManager as? GridLayoutManager)?.findFirstVisibleItemPosition() ?: 0
 
-            if(!detailSearchPresenter.isLoading && (firstVisibleItem - visibleItem) >= totalItemCount - 3) {
+            if(!detailSearchPresenter.isLoading && (firstVisibleItem - visibleItem) >= totalItemCount - 18) {
                 detailSearchPresenter.loadUnsplashImage(intent.getStringExtra("searchKeyword"))
             }
         }
@@ -57,5 +57,11 @@ class DetailSearch : AppCompatActivity(), DetailSearchContract.View {
             layoutManager = GridLayoutManager(this@DetailSearch, 3)
             addOnScrollListener(recyclerViewOnScrollListener)
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        recycler_view_detail?.removeOnScrollListener(recyclerViewOnScrollListener)
     }
 }
