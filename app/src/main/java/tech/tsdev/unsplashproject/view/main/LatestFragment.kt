@@ -56,7 +56,7 @@ class LatestFragment : Fragment(), SearchContract.View {
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
             super.onScrolled(recyclerView, dx, dy)
 
-            val visibleItemCount = recyclerView.childCount as Int
+            val visibleItemCount = recyclerView.childCount
             val totalItemCount = imageRecyclerAdapter.itemCount
             val firstVisibleItem = (recyclerView.layoutManager as? GridLayoutManager)?.findFirstVisibleItemPosition() ?: 0
 

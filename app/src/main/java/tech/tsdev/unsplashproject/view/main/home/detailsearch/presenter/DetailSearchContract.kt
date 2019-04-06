@@ -6,10 +6,11 @@ interface DetailSearchContract {
 
         fun showFailmessage(message: String)
 
-
+        fun showBottomSheetDialog(position: String)
     }
 
     interface Presenter{
         fun loadUnsplashImage(keyword: String)
+
     }
 }

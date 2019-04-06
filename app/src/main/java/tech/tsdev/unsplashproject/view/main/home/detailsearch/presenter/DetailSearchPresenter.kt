@@ -6,17 +6,22 @@ import retrofit2.Callback
 import retrofit2.Response
 import tech.tsdev.unsplashproject.data.PhotosResponse
 import tech.tsdev.unsplashproject.data.source.image.unsplash.UnsplashRepository
-import tech.tsdev.unsplashproject.view.main.home.adapter.model.ImageRecyclerModel
+import tech.tsdev.unsplashproject.view.main.home.detailsearch.adapter.model.DetailRecyclerModel
 
 class DetailSearchPresenter(val view: DetailSearchContract.View,
                             private val unSplashRepository: UnsplashRepository,
-                            val imageRecyclerModel: ImageRecyclerModel) : DetailSearchContract.Presenter {
+                            val detailImageRecyclerModel: DetailRecyclerModel) : DetailSearchContract.Presenter {
 
     var isLoading = true
 
     private var page = 0
     private val perPage = 50
 
+    init {
+        detailImageRecyclerModel.onClick = { imagePosition ->
+            view.showBottomSheetDialog(detailImageRecyclerModel.getItem(imagePosition).id)
+        }
+    }
     override fun loadUnsplashImage(keyword: String) {
         unSplashRepository.getSearchPhoto(keyword, ++page, perPage)
             .enqueue(object: Callback<PhotosResponse>{
@@ -29,9 +34,9 @@ class DetailSearchPresenter(val view: DetailSearchContract.View,
 
                         response.body()?.let {
                             it.results.forEach { result ->
-                                imageRecyclerModel.addItem(result)
+                                detailImageRecyclerModel.addItem(result)
                             }
-                            imageRecyclerModel.notifyDataSetChang()
+                            detailImageRecyclerModel.notifyDataChange()
                         } ?: let { view.showFailmessage("Code ${response.body()?.results}") }
                     } else {
                         view.showFailmessage()

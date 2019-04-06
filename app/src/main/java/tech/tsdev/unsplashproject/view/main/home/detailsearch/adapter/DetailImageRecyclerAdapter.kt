@@ -23,8 +23,8 @@ class DetailImageRecyclerAdapter(private val context: Context) : RecyclerView.Ad
 
     override fun getItem(position: Int): Result = list[position]
 
-    override fun onCreateViewHolder(p0: ViewGroup, p1: Int): RecyclerView.ViewHolder {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun onCreateViewHolder(parent: ViewGroup, p1: Int): RecyclerView.ViewHolder{
+        return DetailRecyclerHolder(onClick, context, parent)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {

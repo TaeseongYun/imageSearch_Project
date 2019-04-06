@@ -17,5 +17,18 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/sample_01"
             android:scaleType="centerCrop"/>
+    <TextView
+            android:text="TextView"
+            android:padding="10dp"
+            android:textColor="#dcdbdc"
+            android:background="#CC000000"
+            android:gravity="right"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/iv_user_name" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/img_view"/>
 
 </android.support.constraint.ConstraintLayout>

@@ -6,13 +6,23 @@ import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_detail_search.*
+import kotlinx.android.synthetic.main.item_image_view.*
 import tech.tsdev.unsplashproject.R
 import tech.tsdev.unsplashproject.data.source.image.unsplash.UnsplashRepository
 import tech.tsdev.unsplashproject.view.main.home.adapter.ImageRecyclerAdapter
+import tech.tsdev.unsplashproject.view.main.home.detail.DetailImageBottomSheet
+import tech.tsdev.unsplashproject.view.main.home.detailsearch.adapter.DetailImageRecyclerAdapter
 import tech.tsdev.unsplashproject.view.main.home.detailsearch.presenter.DetailSearchContract
 import tech.tsdev.unsplashproject.view.main.home.detailsearch.presenter.DetailSearchPresenter
 
 class DetailSearch : AppCompatActivity(), DetailSearchContract.View {
+    override fun showBottomSheetDialog(position: String) {
+        if( isDestroyed) return
+
+        DetailImageBottomSheet.create(position).show(this.supportFragmentManager, "DetailImageBottomSheet")
+    }
+
+
     override fun showFailmessage() {
         if ( isDestroyed ) return
 
@@ -25,12 +35,12 @@ class DetailSearch : AppCompatActivity(), DetailSearchContract.View {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
-    private val imageRecyclerAdapter: ImageRecyclerAdapter by lazy {
-        ImageRecyclerAdapter(this)
+    private val detailImageRecyclerAdapter: DetailImageRecyclerAdapter by lazy {
+        DetailImageRecyclerAdapter(this)
     }
 
     private val detailSearchPresenter: DetailSearchPresenter by lazy {
-        DetailSearchPresenter(this, UnsplashRepository, imageRecyclerAdapter)
+        DetailSearchPresenter(this, UnsplashRepository, detailImageRecyclerAdapter)
     }
 
     private val recyclerViewOnScrollListener = object: RecyclerView.OnScrollListener() {
@@ -38,7 +48,7 @@ class DetailSearch : AppCompatActivity(), DetailSearchContract.View {
             super.onScrolled(recyclerView, dx, dy)
 
             val visibleItem = recyclerView.childCount
-            val totalItemCount = imageRecyclerAdapter.itemCount
+            val totalItemCount = detailImageRecyclerAdapter.itemCount
             val firstVisibleItem = (recyclerView.layoutManager as? GridLayoutManager)?.findFirstVisibleItemPosition() ?: 0
 
             if(!detailSearchPresenter.isLoading && (firstVisibleItem - visibleItem) >= totalItemCount - 18) {
@@ -53,8 +63,8 @@ class DetailSearch : AppCompatActivity(), DetailSearchContract.View {
         detailSearchPresenter.loadUnsplashImage(intent.getStringExtra("searchKeyword"))
 
         recycler_view_detail.run {
-            adapter = imageRecyclerAdapter
-            layoutManager = GridLayoutManager(this@DetailSearch, 3)
+            adapter = detailImageRecyclerAdapter
+            layoutManager = GridLayoutManager(this@DetailSearch, 2)
             addOnScrollListener(recyclerViewOnScrollListener)
         }
     }

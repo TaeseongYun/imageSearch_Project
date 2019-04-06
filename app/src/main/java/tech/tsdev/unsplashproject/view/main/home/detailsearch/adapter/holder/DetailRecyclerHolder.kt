@@ -26,5 +26,6 @@ class DetailRecyclerHolder(onClick: (Int)->Unit, context: Context, parent: ViewG
     }
     private fun View.onBind(item: Result) {
         img_view.loadImage(item.urls.regular)
+        iv_user_name.text = item.user.username
     }
 }
