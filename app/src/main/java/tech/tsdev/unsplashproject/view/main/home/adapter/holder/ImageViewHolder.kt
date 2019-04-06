@@ -7,18 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.item_image_view.view.*
 import tech.tsdev.unsplashproject.R
-import tech.tsdev.unsplashproject.data.ImageData
+import tech.tsdev.unsplashproject.data.Result
 
 class ImageViewHolder(context: Context, parent: ViewGroup?)
     : RecyclerView.ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_image_view, parent, false)) {
 
 
-    fun onBind(item: ImageData) {
+    fun onBind(item: Result) {
         itemView.onBind(item)
     }
 
-    fun View.onBind(item: ImageData) {
-        tv_title.text = item.name
-        img_view.setImageResource(resources.getIdentifier(item.fileName, "drawable", context.packageName))
+    fun View.onBind(item: Result) {
+//        img_view.setImageResource(resources.getIdentifier(item.fileName, "drawable", context.packageName))
+        img_view.loadImage(item.urls.regular)
     }
 }

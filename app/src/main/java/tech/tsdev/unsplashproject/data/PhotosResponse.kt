@@ -27,7 +27,9 @@ data class Result(
     val urls: Urls,
     val user: User,
     val width: Int
-)
+){
+    fun getLoadImage() = urls.regular
+}
 
 data class User(
     val accepted_tos: Boolean,

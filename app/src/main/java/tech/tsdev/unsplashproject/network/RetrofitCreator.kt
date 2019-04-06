@@ -4,13 +4,11 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 
-fun <T> createRetrofit(cls: Class<T>, baseUrl: String): T {
+fun <T> createRetrofit(cls: Class<T>, Url: String): T {
     return Retrofit.Builder()
-        .baseUrl(baseUrl)
+        .baseUrl( Url )
         .addConverterFactory( GsonConverterFactory.create() )
-
         .client( createOkHttpClient() )
         .build()
         .create(cls)

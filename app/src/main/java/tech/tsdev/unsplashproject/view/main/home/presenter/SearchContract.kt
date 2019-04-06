@@ -5,6 +5,10 @@ interface SearchContract {
         fun hideProgressbar()
 
         fun showProgressbar()
+
+        fun showLoadFail()
+
+        fun showLoadFail(message: String)
     }
 
     interface Presenter {
