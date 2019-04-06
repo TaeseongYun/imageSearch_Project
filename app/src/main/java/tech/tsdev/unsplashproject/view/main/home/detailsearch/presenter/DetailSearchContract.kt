@@ -7,10 +7,14 @@ interface DetailSearchContract {
         fun showFailmessage(message: String)
 
         fun showBottomSheetDialog(position: String)
+
+        fun loadSerachKeyword(searchKeyword: String)
     }
 
     interface Presenter{
         fun loadUnsplashImage(keyword: String)
+
+
 
     }
 }

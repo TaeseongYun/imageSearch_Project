@@ -16,6 +16,10 @@ import tech.tsdev.unsplashproject.view.main.home.detailsearch.presenter.DetailSe
 import tech.tsdev.unsplashproject.view.main.home.detailsearch.presenter.DetailSearchPresenter
 
 class DetailSearch : AppCompatActivity(), DetailSearchContract.View {
+    override fun loadSerachKeyword(searchKeyword: String) {
+        tv_search_keyword.text = searchKeyword
+    }
+
     override fun showBottomSheetDialog(position: String) {
         if( isDestroyed) return
 
@@ -61,6 +65,10 @@ class DetailSearch : AppCompatActivity(), DetailSearchContract.View {
         setContentView(R.layout.activity_detail_search)
 
         detailSearchPresenter.loadUnsplashImage(intent.getStringExtra("searchKeyword"))
+
+        loadSerachKeyword(intent.getStringExtra("searchKeyword"))
+
+        img_search_close_btn.setOnClickListener { finish() }
 
         recycler_view_detail.run {
             adapter = detailImageRecyclerAdapter
