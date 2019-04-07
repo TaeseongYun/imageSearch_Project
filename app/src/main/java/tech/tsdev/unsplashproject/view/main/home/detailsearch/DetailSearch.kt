@@ -6,12 +6,9 @@ import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_detail_search.*
-import kotlinx.android.synthetic.main.bottom_sheet_detail.*
-import kotlinx.android.synthetic.main.item_image_view.*
 import tech.tsdev.unsplashproject.R
 import tech.tsdev.unsplashproject.data.source.image.unsplash.UnsplashRepository
-import tech.tsdev.unsplashproject.view.main.home.adapter.ImageRecyclerAdapter
-import tech.tsdev.unsplashproject.view.main.home.detail.DetailImageBottomSheet
+import tech.tsdev.unsplashproject.view.main.home.detailbottomsheet.DetailImageBottomSheet
 import tech.tsdev.unsplashproject.view.main.home.detailsearch.adapter.DetailImageRecyclerAdapter
 import tech.tsdev.unsplashproject.view.main.home.detailsearch.presenter.DetailSearchContract
 import tech.tsdev.unsplashproject.view.main.home.detailsearch.presenter.DetailSearchPresenter
@@ -67,6 +64,8 @@ class DetailSearch : AppCompatActivity(), DetailSearchContract.View {
 
         detailSearchPresenter.loadUnsplashImage(intent.getStringExtra("searchKeyword"))
 
+
+        //app_bar 키워드 띄워주는 함수
         loadSerachKeyword(intent.getStringExtra("searchKeyword"))
 
         img_search_close_btn.setOnClickListener { finish() }
@@ -75,10 +74,6 @@ class DetailSearch : AppCompatActivity(), DetailSearchContract.View {
             adapter = detailImageRecyclerAdapter
             layoutManager = GridLayoutManager(this@DetailSearch, 2)
             addOnScrollListener(recyclerViewOnScrollListener)
-        }
-
-        floating_action_button.setOnClickListener {
-
         }
     }
 

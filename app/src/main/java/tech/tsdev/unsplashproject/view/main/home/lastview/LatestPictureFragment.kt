@@ -1,4 +1,4 @@
-package tech.tsdev.unsplashproject.view.main
+package tech.tsdev.unsplashproject.view.main.home.lastview
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -12,11 +12,12 @@ import kotlinx.android.synthetic.main.fragment_picture.*
 import tech.tsdev.unsplashproject.R
 import tech.tsdev.unsplashproject.data.source.image.unsplash.UnsplashRepository
 import tech.tsdev.unsplashproject.view.main.home.adapter.ImageRecyclerAdapter
-import tech.tsdev.unsplashproject.view.main.home.presenter.SearchContract
-import tech.tsdev.unsplashproject.view.main.home.presenter.SearchPresenter
+import tech.tsdev.unsplashproject.view.main.home.lastview.adapter.LatestImageRecyclerAdapter
+import tech.tsdev.unsplashproject.view.main.home.lastview.presenter.LatestPictureContract
+import tech.tsdev.unsplashproject.view.main.home.lastview.presenter.LatestPicturePresenter
 
 
-class LatestFragment : Fragment(), SearchContract.View {
+class LatestPictureFragment : Fragment(), LatestPictureContract.View {
     override fun showLoadFail() {
         if( isDetached )  return
 
@@ -29,14 +30,14 @@ class LatestFragment : Fragment(), SearchContract.View {
 
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
-    private val searchPresenter: SearchPresenter by lazy {
-        SearchPresenter(this@LatestFragment,
+    private val latestPicturePresenter: LatestPicturePresenter by lazy {
+        LatestPicturePresenter(this@LatestPictureFragment,
             UnsplashRepository,
-            imageRecyclerAdapter)
+            lateImageRecyclerAdapter)
     }
 
-    private val imageRecyclerAdapter: ImageRecyclerAdapter by lazy {
-        ImageRecyclerAdapter(this@LatestFragment.context)
+    private val lateImageRecyclerAdapter: LatestImageRecyclerAdapter by lazy {
+        LatestImageRecyclerAdapter(this@LatestPictureFragment.context)
     }
 
     override fun hideProgressbar() {
@@ -57,11 +58,11 @@ class LatestFragment : Fragment(), SearchContract.View {
             super.onScrolled(recyclerView, dx, dy)
 
             val visibleItemCount = recyclerView.childCount
-            val totalItemCount = imageRecyclerAdapter.itemCount
+            val totalItemCount = lateImageRecyclerAdapter.itemCount
             val firstVisibleItem = (recyclerView.layoutManager as? GridLayoutManager)?.findFirstVisibleItemPosition() ?: 0
 
-            if (!searchPresenter.isLoading && (firstVisibleItem + visibleItemCount) >= totalItemCount - 7) {
-                searchPresenter.loadImage()
+            if (!latestPicturePresenter.isLoading && (firstVisibleItem + visibleItemCount) >= totalItemCount - 7) {
+                latestPicturePresenter.loadImage()
             }
         }
     }
@@ -72,13 +73,14 @@ class LatestFragment : Fragment(), SearchContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        searchPresenter.loadImage()
+
 
         recycler_view.run {
-            adapter = imageRecyclerAdapter
-            layoutManager = GridLayoutManager(this@LatestFragment.context, 3)
+            adapter = lateImageRecyclerAdapter
+            layoutManager = GridLayoutManager(this@LatestPictureFragment.context, 3)
             addOnScrollListener(recyclerViewOnScrollListener)
         }
+        latestPicturePresenter.loadImage()
     }
 }
 

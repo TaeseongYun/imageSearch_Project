@@ -1,4 +1,4 @@
-package tech.tsdev.unsplashproject.view.main.home.detail
+package tech.tsdev.unsplashproject.view.main.home.detailbottomsheet
 
 import android.app.Dialog
 import android.os.Bundle
@@ -11,8 +11,8 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.bottom_sheet_detail.*
 import tech.tsdev.unsplashproject.R
 import tech.tsdev.unsplashproject.data.source.image.unsplash.UnsplashRepository
-import tech.tsdev.unsplashproject.view.main.home.detail.presenter.DetailImageContract
-import tech.tsdev.unsplashproject.view.main.home.detail.presenter.DetailImagePresenter
+import tech.tsdev.unsplashproject.view.main.home.detailbottomsheet.presenter.DetailImageContract
+import tech.tsdev.unsplashproject.view.main.home.detailbottomsheet.presenter.DetailImagePresenter
 
 class DetailImageBottomSheet : BottomSheetDialogFragment(), DetailImageContract.View {
     override fun showLoadErrorToast() {
@@ -91,6 +91,10 @@ class DetailImageBottomSheet : BottomSheetDialogFragment(), DetailImageContract.
         }
         img_web.setOnClickListener {
 
+        }
+
+        floating_action_button.setOnClickListener {
+            println("다운로드 버튼 클릭됬습니다.")
         }
 
         arguments?.getString(KEY_PHOTO_ID)?.let { detailImagePresenter.loadDetailInfo(it) }

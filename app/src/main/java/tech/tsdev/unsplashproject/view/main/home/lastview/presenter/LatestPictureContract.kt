@@ -1,6 +1,6 @@
-package tech.tsdev.unsplashproject.view.main.home.presenter
+package tech.tsdev.unsplashproject.view.main.home.lastview.presenter
 
-interface SearchContract {
+interface LatestPictureContract {
     interface View {
         fun hideProgressbar()
 
@@ -13,6 +13,5 @@ interface SearchContract {
 
     interface Presenter {
         fun loadImage()
-
     }
 }

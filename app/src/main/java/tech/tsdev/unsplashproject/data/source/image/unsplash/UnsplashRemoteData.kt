@@ -1,6 +1,10 @@
 package tech.tsdev.unsplashproject.data.source.image.unsplash
 
 
+import retrofit2.Call
+import tech.tsdev.unsplashproject.data.LatestPhotos
+import tech.tsdev.unsplashproject.data.PhotosResponse
+import tech.tsdev.unsplashproject.data.Result
 import tech.tsdev.unsplashproject.network.UnsplashInterface
 import tech.tsdev.unsplashproject.network.createRetrofit
 
@@ -23,6 +27,8 @@ class UnsplashRemoteData : UnsplashDataSource {
 
     private val unSplashInterfaceDetailUser = createRetrofit(UnsplashInterface::class.java, UNSPLASH_USERNAME)
 
+    private val unSplashInterfaceLatestPhotos = createRetrofit(UnsplashInterface::class.java, UNSPLASH_USERNAME)
+
     override fun getSearchPhoto(keyword: String, page: Int, perPage: Int)
             = unSplashInterface.getUnsplashSearchPhotos(keyword, page, perPage)
 
@@ -31,4 +37,7 @@ class UnsplashRemoteData : UnsplashDataSource {
 
     override fun getPhotoDetail(photoId: String) =
             unSplashInterfaceDetailUser.getDetailInfo(photoId)
+
+    override fun getLatestPhoto(): Call<List<LatestPhotos>>
+            =  unSplashInterfaceLatestPhotos.getUpsplashLatestPhotos()
 }

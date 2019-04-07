@@ -3,30 +3,26 @@ package tech.tsdev.unsplashproject.view.main
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
-import android.view.Window
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_ect.*
 import tech.tsdev.unsplashproject.R
 import tech.tsdev.unsplashproject.util.replace
 import tech.tsdev.unsplashproject.view.main.home.SearchFragment
+import tech.tsdev.unsplashproject.view.main.home.lastview.LatestPictureFragment
+import tech.tsdev.unsplashproject.view.main.home.settingview.SettingFragment
 
 class MainActivity : AppCompatActivity() {
 
     private val searchFragment: SearchFragment by lazy {
-        SearchFragment().apply {
-            arguments = Bundle().apply {
-                putInt(SearchFragment.KEY_TITLE, R.string.title_search)
-            }
-        }
+        SearchFragment()
     }
-    private val latestFragment: LatestFragment by lazy {
-        LatestFragment()
+    private val latestFragment: LatestPictureFragment by lazy {
+        LatestPictureFragment()
     }
 
     private val settingFragment: SettingFragment by lazy {
         SettingFragment().apply {
             arguments = Bundle().apply {
-                putInt(SearchFragment.KEY_TITLE, R.string.title_setting)
+                putInt(SettingFragment.KEY_TITLE, R.string.title_setting)
             }
         }
     }

@@ -1,7 +1,7 @@
 package tech.tsdev.unsplashproject.view.main.home.detailsearch.adapter.model
 
 
-import tech.tsdev.unsplashproject.data.PhotosResponse
+
 import tech.tsdev.unsplashproject.data.Result
 
 interface DetailRecyclerModel {

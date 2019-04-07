@@ -16,10 +16,6 @@ import tech.tsdev.unsplashproject.view.main.home.detailsearch.DetailSearch
 
 class SearchFragment : Fragment() {
 
-    companion object {
-        val KEY_TITLE = "key-title"
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
             = inflater.inflate(R.layout.fragment_search, container, false)
 

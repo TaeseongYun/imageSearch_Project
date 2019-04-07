@@ -1,4 +1,4 @@
-package tech.tsdev.unsplashproject.view.main
+package tech.tsdev.unsplashproject.view.main.home.settingview
 
 import android.os.Bundle
 import android.support.v4.app.Fragment

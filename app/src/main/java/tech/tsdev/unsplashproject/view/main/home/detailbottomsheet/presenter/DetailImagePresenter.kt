@@ -1,4 +1,4 @@
-package tech.tsdev.unsplashproject.view.main.home.detail.presenter
+package tech.tsdev.unsplashproject.view.main.home.detailbottomsheet.presenter
 
 import retrofit2.Call
 import retrofit2.Callback
