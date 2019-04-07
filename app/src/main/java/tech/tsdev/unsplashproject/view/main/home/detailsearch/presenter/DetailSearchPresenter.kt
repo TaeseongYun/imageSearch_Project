@@ -22,6 +22,7 @@ class DetailSearchPresenter(val view: DetailSearchContract.View,
             view.showBottomSheetDialog(detailImageRecyclerModel.getItem(imagePosition).id)
         }
     }
+
     override fun loadUnsplashImage(keyword: String) {
         unSplashRepository.getSearchPhoto(keyword, ++page, perPage)
             .enqueue(object: Callback<PhotosResponse>{

@@ -12,12 +12,20 @@ import kotlinx.android.synthetic.main.fragment_picture.*
 import tech.tsdev.unsplashproject.R
 import tech.tsdev.unsplashproject.data.source.image.unsplash.UnsplashRepository
 import tech.tsdev.unsplashproject.view.main.home.adapter.ImageRecyclerAdapter
+import tech.tsdev.unsplashproject.view.main.home.detailbottomsheet.DetailImageBottomSheet
 import tech.tsdev.unsplashproject.view.main.home.lastview.adapter.LatestImageRecyclerAdapter
 import tech.tsdev.unsplashproject.view.main.home.lastview.presenter.LatestPictureContract
 import tech.tsdev.unsplashproject.view.main.home.lastview.presenter.LatestPicturePresenter
 
 
 class LatestPictureFragment : Fragment(), LatestPictureContract.View {
+
+    override fun showBottomSheetDialog(positionId: String) {
+        if( isDetached ) return
+
+        DetailImageBottomSheet.create(positionId).show(this.fragmentManager, "DetailImageBottomSheet")
+    }
+
     override fun showLoadFail() {
         if( isDetached )  return
 

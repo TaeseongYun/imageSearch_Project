@@ -9,6 +9,8 @@ interface LatestPictureContract {
         fun showLoadFail()
 
         fun showLoadFail(message: String)
+
+        fun showBottomSheetDialog(positionId: String)
     }
 
     interface Presenter {

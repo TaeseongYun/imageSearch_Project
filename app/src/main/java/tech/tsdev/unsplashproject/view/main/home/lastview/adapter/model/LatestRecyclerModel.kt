@@ -13,5 +13,5 @@ interface LatestRecyclerModel {
 
     fun getItemCount(): Int
 
-//    var onClick: (Int) -> Unit
+    var onClick: (Int) -> Unit
 }

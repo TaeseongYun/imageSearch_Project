@@ -19,7 +19,7 @@ class DetailImagePresenter(val view: DetailImageContract.View,
                 if(response.isSuccessful) {
                     response.body()?.let {
                         view.updateItem(it.urls.regular
-                            , it.alt_description
+                            , it?.let { it.alt_description } ?: let { "Empty_Description" }
                             , it.user.total_likes
                             , it.user.total_photos)
                         view.updateToolbarItem(

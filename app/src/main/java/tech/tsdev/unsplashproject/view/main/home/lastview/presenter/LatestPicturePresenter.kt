@@ -18,6 +18,11 @@ class LatestPicturePresenter(val view: LatestPictureContract.View,
     private var page = 0
     private val perPage = 30
 
+    init {
+        latestImageRecyclerModel.onClick = {position ->
+            view.showBottomSheetDialog(latestImageRecyclerModel.getItem(position).id)
+        }
+    }
 
     override fun loadImage() {
         isLoading = true

@@ -9,7 +9,6 @@ import tech.tsdev.unsplashproject.data.PhotosResponse
 object UnsplashRepository : UnsplashDataSource{
 
 
-
     private val unSplashRemoteData = UnsplashRemoteData()
 
     override fun getSearchPhoto(keyword: String,  page: Int, perPage: Int): Call<PhotosResponse>
