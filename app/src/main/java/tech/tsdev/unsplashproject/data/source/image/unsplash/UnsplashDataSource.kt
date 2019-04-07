@@ -12,9 +12,7 @@ interface UnsplashDataSource {
 
     fun getSearchPhoto(keyword: String, page:Int, perPage: Int): Call<PhotosResponse>
 
-    fun getPhotoList(page: Int, per_page: Int): Call<PhotosResponse>
-
     fun getPhotoDetail(photoId: String): Call<SinglePhoto>
 
-    fun getLatestPhoto(): Call<List<LatestPhotos>>
+    fun getLatestPhoto(page: Int, per_page: Int): Call<List<LatestPhotos>>
 }

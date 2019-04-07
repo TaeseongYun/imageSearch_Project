@@ -23,8 +23,6 @@ class UnsplashRemoteData : UnsplashDataSource {
 
     private val unSplashInterface = createRetrofit(UnsplashInterface::class.java, UNSPLASH_URL)
 
-    private val unSplashInterfacePhotoList = createRetrofit(UnsplashInterface::class.java, UNSPLASH_PHOTOLIST_URL)
-
     private val unSplashInterfaceDetailUser = createRetrofit(UnsplashInterface::class.java, UNSPLASH_USERNAME)
 
     private val unSplashInterfaceLatestPhotos = createRetrofit(UnsplashInterface::class.java, UNSPLASH_USERNAME)
@@ -32,12 +30,9 @@ class UnsplashRemoteData : UnsplashDataSource {
     override fun getSearchPhoto(keyword: String, page: Int, perPage: Int)
             = unSplashInterface.getUnsplashSearchPhotos(keyword, page, perPage)
 
-    override fun getPhotoList(page: Int, per_page: Int)
-            = unSplashInterfacePhotoList.getUnsplashPhotos(page, per_page)
-
     override fun getPhotoDetail(photoId: String) =
             unSplashInterfaceDetailUser.getDetailInfo(photoId)
 
-    override fun getLatestPhoto(): Call<List<LatestPhotos>>
-            =  unSplashInterfaceLatestPhotos.getUpsplashLatestPhotos()
+    override fun getLatestPhoto(page: Int, per_page: Int): Call<List<LatestPhotos>>
+            =  unSplashInterfaceLatestPhotos.getUpsplashLatestPhotos(page, per_page)
 }
