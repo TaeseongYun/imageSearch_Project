@@ -6,6 +6,7 @@ import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_detail_search.*
+import kotlinx.android.synthetic.main.bottom_sheet_detail.*
 import kotlinx.android.synthetic.main.item_image_view.*
 import tech.tsdev.unsplashproject.R
 import tech.tsdev.unsplashproject.data.source.image.unsplash.UnsplashRepository
@@ -20,10 +21,10 @@ class DetailSearch : AppCompatActivity(), DetailSearchContract.View {
         tv_search_keyword.text = searchKeyword
     }
 
-    override fun showBottomSheetDialog(position: String) {
+    override fun showBottomSheetDialog(positionId: String) {
         if( isDestroyed) return
 
-        DetailImageBottomSheet.create(position).show(this.supportFragmentManager, "DetailImageBottomSheet")
+        DetailImageBottomSheet.create(positionId).show(this.supportFragmentManager, "DetailImageBottomSheet")
     }
 
 
@@ -74,6 +75,10 @@ class DetailSearch : AppCompatActivity(), DetailSearchContract.View {
             adapter = detailImageRecyclerAdapter
             layoutManager = GridLayoutManager(this@DetailSearch, 2)
             addOnScrollListener(recyclerViewOnScrollListener)
+        }
+
+        floating_action_button.setOnClickListener {
+
         }
     }
 

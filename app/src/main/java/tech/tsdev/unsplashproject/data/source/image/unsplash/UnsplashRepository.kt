@@ -17,5 +17,5 @@ object UnsplashRepository : UnsplashDataSource{
             = unSplashRemoteData.getPhotoList(page, per_page)
 
     override fun getPhotoDetail(photoId: String)
-    = unSplashRemoteData.getPhotoDetail(photoId)
+            = unSplashRemoteData.getPhotoDetail(photoId)
 }

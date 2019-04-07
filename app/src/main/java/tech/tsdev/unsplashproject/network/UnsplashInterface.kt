@@ -13,21 +13,21 @@ import tech.tsdev.unsplashproject.view.main.home.detail.DetailImageBottomSheet
 
 interface  UnsplashInterface {
 
-    @GET("?client_id=50fda0b295b432b006dc70b08f3ca128a32efa16f92cec67d97cb41d559d3ff1")
+    @GET("?client_id=YOUR_ACCESS_KEY")
     fun getUnsplashSearchPhotos(
         @Query("query") query: String,
         @Query("page") page: Int,
         @Query("per_page") per_page: Int
     ): Call<PhotosResponse>
 
-    @GET("?client_id=50fda0b295b432b006dc70b08f3ca128a32efa16f92cec67d97cb41d559d3ff1")
+    @GET("?client_id=YOUR_ACCESS_KEY")
     fun getUnsplashPhotos(
         @Query("page") page: Int,
         @Query("per_page") per_page: Int
     ): Call<PhotosResponse>
 
 
-    @GET("{username}?client_id=50fda0b295b432b006dc70b08f3ca128a32efa16f92cec67d97cb41d559d3ff1")
+    @GET("{username}?client_id=YOUR_ACCESS_KEY")
     fun getDetailInfo(
         @Path("username") username: String
     ): Call<SinglePhoto>
