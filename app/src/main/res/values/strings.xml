@@ -7,4 +7,10 @@
 
     <string name="button_search">search</string>
     <string name="button_clear">clear</string>
+    <string name="latest_app_bar_name">LatestPicture</string>
+
+    <string name="input_user_id">Input User ID</string>
+    <string name="input_user_pw">Input User PW</string>
+
+    <string name="app_bar_login">Log In</string>
 </resources>

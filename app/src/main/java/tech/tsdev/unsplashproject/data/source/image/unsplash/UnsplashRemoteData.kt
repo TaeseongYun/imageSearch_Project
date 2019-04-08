@@ -15,7 +15,7 @@ class UnsplashRemoteData : UnsplashDataSource {
 
     companion object {
         const val UNSPLASH_URL = "https://api.unsplash.com/search/photos/"
-        const val UNSPLASH_PHOTOLIST_URL = "https://api.unsplash.com/photos/"
+//        const val UNSPLASH_PHOTOLIST_URL = "https://api.unsplash.com/photos/"
         const val UNSPLASH_USERNAME = "https://api.unsplash.com/photos/"
     }
 

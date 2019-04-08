@@ -1,5 +1,6 @@
 package tech.tsdev.unsplashproject.view.main.home.lastview
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
@@ -16,6 +17,7 @@ import tech.tsdev.unsplashproject.view.main.home.detailbottomsheet.DetailImageBo
 import tech.tsdev.unsplashproject.view.main.home.lastview.adapter.LatestImageRecyclerAdapter
 import tech.tsdev.unsplashproject.view.main.home.lastview.presenter.LatestPictureContract
 import tech.tsdev.unsplashproject.view.main.home.lastview.presenter.LatestPicturePresenter
+import tech.tsdev.unsplashproject.view.main.home.loginview.LoginActivity
 
 
 class LatestPictureFragment : Fragment(), LatestPictureContract.View {
@@ -49,7 +51,7 @@ class LatestPictureFragment : Fragment(), LatestPictureContract.View {
     }
 
     override fun hideProgressbar() {
-        progressBar.visibility = View.GONE
+        progressBar.visibility = View.INVISIBLE
     }
 
     override fun showProgressbar() {
@@ -81,14 +83,19 @@ class LatestPictureFragment : Fragment(), LatestPictureContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        progressBar.visibility = View.VISIBLE
+        latestPicturePresenter.loadImage()
 
         recycler_view.run {
             adapter = lateImageRecyclerAdapter
             layoutManager = GridLayoutManager(this@LatestPictureFragment.context, 1)
             addOnScrollListener(recyclerViewOnScrollListener)
         }
-        latestPicturePresenter.loadImage()
+
+
+        img_user.setOnClickListener {
+            startActivity(Intent(context, LoginActivity::class.java))
+        }
     }
 }
 
