@@ -72,7 +72,7 @@ class DetailSearch : AppCompatActivity(), DetailSearchContract.View {
 
         recycler_view_detail.run {
             adapter = detailImageRecyclerAdapter
-            layoutManager = GridLayoutManager(this@DetailSearch, 2)
+            layoutManager = GridLayoutManager(this@DetailSearch, 1)
             addOnScrollListener(recyclerViewOnScrollListener)
         }
     }

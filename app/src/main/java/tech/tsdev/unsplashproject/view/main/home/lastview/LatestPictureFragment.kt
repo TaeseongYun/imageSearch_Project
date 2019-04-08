@@ -85,7 +85,7 @@ class LatestPictureFragment : Fragment(), LatestPictureContract.View {
 
         recycler_view.run {
             adapter = lateImageRecyclerAdapter
-            layoutManager = GridLayoutManager(this@LatestPictureFragment.context, 3)
+            layoutManager = GridLayoutManager(this@LatestPictureFragment.context, 1)
             addOnScrollListener(recyclerViewOnScrollListener)
         }
         latestPicturePresenter.loadImage()
