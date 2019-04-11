@@ -1,6 +1,8 @@
 package tech.tsdev.unsplashproject.view.main.home.loginview.presenter
 
-import com.google.firebase.auth.FirebaseAuth
+
+import retrofit2.Call
+import tech.tsdev.unsplashproject.data.UserData
 
 interface LoginContract {
     interface View{
@@ -14,8 +16,6 @@ interface LoginContract {
     }
 
     interface Presenter{
-        fun loginEmailAndPassword(userId: String, userPassword: String)
-
-        fun loginWithFacebook()
+       fun createUser(email: String, password: String)
     }
 }

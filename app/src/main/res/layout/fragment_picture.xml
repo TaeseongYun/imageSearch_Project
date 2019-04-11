@@ -37,7 +37,7 @@
                             android:textStyle="bold"
                             android:textSize="18sp"/>
 
-                    <ImageView
+                    <tech.tsdev.unsplashproject.view.custom.GlideImageView
                             android:id="@+id/img_user"
                             android:layout_width="30dp"
                             android:layout_height="30dp"

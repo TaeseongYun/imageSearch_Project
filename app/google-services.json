@@ -21,6 +21,10 @@
             "package_name": "tech.tsdev.unsplashproject",
             "certificate_hash": "ca6ebfbc4352c4bc34266f766c6847561202b497"
           }
+        },
+        {
+          "client_id": "732683976104-9lukogbdtfjuls2oo875hhck4cbi3ndc.apps.googleusercontent.com",
+          "client_type": 3
         }
       ],
       "api_key": [

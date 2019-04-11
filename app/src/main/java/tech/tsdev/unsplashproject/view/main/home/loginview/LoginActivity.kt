@@ -4,13 +4,14 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 import tech.tsdev.unsplashproject.R
+import tech.tsdev.unsplashproject.data.source.image.mongodb.MongoRepository
 import tech.tsdev.unsplashproject.view.main.home.loginview.presenter.LoginContract
 import tech.tsdev.unsplashproject.view.main.home.loginview.presenter.LoginPresenter
 
 class LoginActivity : AppCompatActivity(), LoginContract.View {
-
 
     override fun showProgressBar() {
         progress_Bar.visibility = View.VISIBLE
@@ -29,7 +30,7 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
     }
 
     private val loginPresenter: LoginPresenter by lazy {
-        LoginPresenter(this@LoginActivity)
+        LoginPresenter(this@LoginActivity,MongoRepository)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,7 +44,8 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
         }
 
         btn_login.setOnClickListener {
-            loginPresenter.loginEmailAndPassword(tv_user_id.text.toString(), tv_user_pw.text.toString())
+            
+            loginPresenter.createUser(tv_user_id.text.toString(), tv_user_pw.text.toString())
         }
 
     }

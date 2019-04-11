@@ -51,7 +51,7 @@ class LatestPicturePresenter(val view: LatestPictureContract.View,
                     } else{
                         view.showLoadFail()
                     }
-//                    view.hideProgressbar()
+                    view.hideProgressbar()
 
                     isLoading = false
                 }

@@ -10,12 +10,12 @@ import tech.tsdev.unsplashproject.data.source.image.unsplash.UnsplashRepository
 class DetailImagePresenter(val view: DetailImageContract.View,
                            private val unSplashRepository: UnsplashRepository) : DetailImageContract.Presenter {
     override fun loadDetailInfo(photoId: String) {
-        unSplashRepository.getPhotoDetail(photoId).enqueue(object : Callback<SinglePhoto>{
-            override fun onFailure(call: Call<SinglePhoto>, t: Throwable) {
+        unSplashRepository.getPhotoDetail(photoId).enqueue(object : Callback<SinglePhoto?>{
+            override fun onFailure(call: Call<SinglePhoto?>, t: Throwable) {
 
             }
 
-            override fun onResponse(call: Call<SinglePhoto>, response: Response<SinglePhoto>) {
+            override fun onResponse(call: Call<SinglePhoto?>, response: Response<SinglePhoto?>) {
                 if(response.isSuccessful) {
                     response.body()?.let {
                         view.updateItem(it.urls.regular
