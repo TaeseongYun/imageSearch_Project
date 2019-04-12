@@ -3,6 +3,9 @@ package tech.tsdev.unsplashproject.view.main
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
+import android.widget.Toast
+import com.gun0912.tedpermission.PermissionListener
+import com.gun0912.tedpermission.TedPermission
 import kotlinx.android.synthetic.main.activity_main.*
 import tech.tsdev.unsplashproject.R
 import tech.tsdev.unsplashproject.util.replace
@@ -10,7 +13,9 @@ import tech.tsdev.unsplashproject.view.main.home.SearchFragment
 import tech.tsdev.unsplashproject.view.main.home.lastview.LatestPictureFragment
 import tech.tsdev.unsplashproject.view.main.home.settingview.SettingFragment
 
+
 class MainActivity : AppCompatActivity() {
+
 
     private val searchFragment: SearchFragment by lazy {
         SearchFragment()
@@ -26,6 +31,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_search -> {
@@ -43,7 +49,16 @@ class MainActivity : AppCompatActivity() {
         }
         false
     }
+    private val permissionListener = object: PermissionListener {
+        override fun onPermissionGranted() {
+            Toast.makeText(this@MainActivity, "권한 허가",  Toast.LENGTH_SHORT).show()
+        }
 
+        override fun onPermissionDenied(deniedPermissions: MutableList<String>?) {
+            finish()
+        }
+
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -51,5 +66,17 @@ class MainActivity : AppCompatActivity() {
 
         replace(R.id.frameLayout, searchFragment)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+
+
+        TedPermission.with(this)
+            .setPermissionListener(permissionListener)
+            .setRationaleTitle(R.string.not_grant_permission)
+            .setRationaleMessage(R.string.need_permision)
+            .setPermissions(
+                android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+                , android.Manifest.permission.READ_EXTERNAL_STORAGE)
+            .check()
     }
+
+
 }
