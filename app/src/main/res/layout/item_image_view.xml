@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                             android:layout_width="match_parent"
-                                             android:layout_height="250dp"
                                              xmlns:app="http://schemas.android.com/apk/res-auto"
                                              xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="250dp"
                                              android:background="#000">
 
 
@@ -17,18 +17,23 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/sample_01"
             android:scaleType="centerCrop"/>
+    <tech.tsdev.unsplashproject.view.custom.GlideImageView
+            android:id="@+id/img_unsplash_user"
+            android:layout_width="35dp" android:layout_height="35dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginLeft="8dp"
+            android:src="@drawable/sample_02"/>
     <TextView
             android:text="TextView"
             android:padding="10dp"
             android:textColor="#dcdbdc"
-            android:background="#CC000000"
-            android:gravity="right"
             android:maxLines="1"
             android:ellipsize="end"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/iv_user_name" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/iv_user_name"
+            app:layout_constraintLeft_toRightOf="@+id/img_unsplash_user"
             app:layout_constraintBottom_toBottomOf="@+id/img_view"/>
 
 </android.support.constraint.ConstraintLayout>

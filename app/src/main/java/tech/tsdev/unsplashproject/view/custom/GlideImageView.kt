@@ -18,4 +18,11 @@ class GlideImageView @JvmOverloads constructor(context: Context, attrs: Attribut
             .apply( RequestOptions.placeholderOf(loadingImageRes).centerCrop() )
             .into(this)
     }
+
+    fun loadProfileImage(url: String, @DrawableRes loadingImageRes: Int = R.drawable.ic_baseline_filter_24px) {
+        Glide.with(this)
+            .load(url)
+            .apply( RequestOptions.placeholderOf(loadingImageRes).circleCrop() )
+            .into(this)
+    }
 }
