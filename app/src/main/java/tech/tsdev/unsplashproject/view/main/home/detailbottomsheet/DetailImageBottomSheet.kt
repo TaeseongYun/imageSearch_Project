@@ -1,7 +1,11 @@
 package tech.tsdev.unsplashproject.view.main.home.detailbottomsheet
 
 import android.app.Dialog
+import android.app.DownloadManager
+import android.content.Context
+import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.support.design.widget.BottomSheetBehavior
 import android.support.design.widget.BottomSheetDialogFragment
 import android.view.LayoutInflater
@@ -15,6 +19,28 @@ import tech.tsdev.unsplashproject.view.main.home.detailbottomsheet.presenter.Det
 import tech.tsdev.unsplashproject.view.main.home.detailbottomsheet.presenter.DetailImagePresenter
 
 class DetailImageBottomSheet : BottomSheetDialogFragment(), DetailImageContract.View {
+    private  var mDownloadReference: Long = 0L
+    private lateinit var mDownloadManager: DownloadManager
+
+
+    override fun downloadImage(url: String?) {
+        mDownloadManager = context?.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+        val uri = Uri.parse(url)
+        val request = DownloadManager.Request(uri)
+            .apply {
+                setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE)
+                setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI)
+                setVisibleInDownloadsUi(true)
+                setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+                setDestinationInExternalPublicDir(Environment.DIRECTORY_PICTURES, uri.lastPathSegment)
+            }
+        mDownloadReference = mDownloadManager.enqueue(request)
+    }
+
+    override fun showDownloadSuccess() {
+        Toast.makeText(context, "사진 다운로드 완료", Toast.LENGTH_SHORT).show()
+    }
+
     override fun showLoadErrorToast() {
         Toast.makeText(context, "에러입니다", Toast.LENGTH_SHORT).show()
     }
@@ -94,7 +120,7 @@ class DetailImageBottomSheet : BottomSheetDialogFragment(), DetailImageContract.
         }
 
         floating_action_button.setOnClickListener {
-            println("다운로드 버튼 클릭됬습니다.")
+            arguments?.getString(KEY_PHOTO_ID)?.let { detailImagePresenter.imageDownload(it) }
         }
 
         arguments?.getString(KEY_PHOTO_ID)?.let { detailImagePresenter.loadDetailInfo(it) }

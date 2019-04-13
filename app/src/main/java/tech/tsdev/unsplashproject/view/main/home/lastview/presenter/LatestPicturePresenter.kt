@@ -1,7 +1,6 @@
 package tech.tsdev.unsplashproject.view.main.home.lastview.presenter
 
 
-
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -9,9 +8,11 @@ import tech.tsdev.unsplashproject.data.LatestPhotos
 import tech.tsdev.unsplashproject.data.source.image.unsplash.UnsplashRepository
 import tech.tsdev.unsplashproject.view.main.home.lastview.adapter.model.LatestRecyclerModel
 
-class LatestPicturePresenter(val view: LatestPictureContract.View,
-                             private val unSplashRepository: UnsplashRepository,
-                             private val latestImageRecyclerModel: LatestRecyclerModel) : LatestPictureContract.Presenter {
+class LatestPicturePresenter(
+    val view: LatestPictureContract.View,
+    private val unSplashRepository: UnsplashRepository,
+    private val latestImageRecyclerModel: LatestRecyclerModel
+) : LatestPictureContract.Presenter {
 
 
     var isLoading = false
@@ -19,7 +20,7 @@ class LatestPicturePresenter(val view: LatestPictureContract.View,
     private val perPage = 30
 
     init {
-        latestImageRecyclerModel.onClick = {position ->
+        latestImageRecyclerModel.onClick = { position ->
             view.showBottomSheetDialog(latestImageRecyclerModel.getItem(position).id)
         }
     }
@@ -29,7 +30,7 @@ class LatestPicturePresenter(val view: LatestPictureContract.View,
         view.showProgressbar()
 
         unSplashRepository.getLatestPhoto(++page, perPage)
-            .enqueue(object : Callback<List<LatestPhotos>>{
+            .enqueue(object : Callback<List<LatestPhotos>> {
                 override fun onFailure(call: Call<List<LatestPhotos>>, t: Throwable) {
                     view.hideProgressbar()
                     view.showLoadFail()
@@ -38,17 +39,17 @@ class LatestPicturePresenter(val view: LatestPictureContract.View,
                 }
 
                 override fun onResponse(call: Call<List<LatestPhotos>>, response: Response<List<LatestPhotos>>?) {
-                    if(response?.isSuccessful == true) {
+                    if (response?.isSuccessful == true) {
                         response.body()?.let {
-                            it.forEach {latesphotos ->
+                            it.forEach { latesphotos ->
                                 latestImageRecyclerModel.addItem(latesphotos)
                             }
 
                             latestImageRecyclerModel.notifyDataChange()
-                        }?:let {
+                        } ?: let {
                             view.showLoadFail("Code erros")
                         }
-                    } else{
+                    } else {
                         view.showLoadFail()
                     }
                     view.hideProgressbar()
@@ -57,5 +58,4 @@ class LatestPicturePresenter(val view: LatestPictureContract.View,
                 }
             })
     }
-
 }

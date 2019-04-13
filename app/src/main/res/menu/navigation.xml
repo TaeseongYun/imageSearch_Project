@@ -2,14 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-            android:id="@+id/navigation_search"
+            android:id="@+id/navigation_latest_picture"
             android:icon="@drawable/ic_round_image_search_24px"
-            android:title="@string/title_search"/>
+            android:title="@string/title_Latest"/>
 
     <item
-            android:id="@+id/navigation_latest_picture"
+            android:id="@+id/navigation_random"
             android:icon="@drawable/ic_sharp_insert_photo_24px"
-            android:title="@string/title_latest_picture"/>
+            android:title="@string/title_random_picture"/>
 
     <item
             android:id="@+id/navigation_setting"

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">UnsplashProject</string>
-    <string name="title_search">Search</string>
-    <string name="title_latest_picture">Picture</string>
+    <string name="title_Latest">Latest</string>
+    <string name="title_random_picture">Random</string>
     <string name="title_setting">Setting</string>
     <string name="input_text">Photo Search Input</string>
 
@@ -21,5 +21,6 @@
     <string name="app_bar_title">Log in</string>
     <string name="not_grant_permission">권한 비 허가</string>
     <string name="need_permision">사진을 다운받기 위해서는 권한이 필요합니다.
-    권한을 거부 할경우 앱이 종료 됩니다.</string>
+        권한을 거부 할경우 앱이 종료 됩니다.
+    </string>
 </resources>

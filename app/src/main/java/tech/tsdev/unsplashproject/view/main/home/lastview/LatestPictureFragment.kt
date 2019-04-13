@@ -91,11 +91,6 @@ class LatestPictureFragment : Fragment(), LatestPictureContract.View {
             layoutManager = GridLayoutManager(this@LatestPictureFragment.context, 1)
             addOnScrollListener(recyclerViewOnScrollListener)
         }
-
-
-        img_user.setOnClickListener {
-            startActivity(Intent(context, LoginActivity::class.java))
-        }
     }
 }
 

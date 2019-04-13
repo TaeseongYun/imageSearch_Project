@@ -10,5 +10,7 @@
 
         <!--안드로이드 타이틀바 제거 문장-->
         <item name="windowNoTitle">true</item>
+
+
     </style>
 </resources>

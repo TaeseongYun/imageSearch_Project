@@ -63,6 +63,7 @@ class DetailSearch : AppCompatActivity(), DetailSearchContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_search)
 
+
         detailSearchPresenter.loadUnsplashImage(intent.getStringExtra("searchKeyword"))
 
 
