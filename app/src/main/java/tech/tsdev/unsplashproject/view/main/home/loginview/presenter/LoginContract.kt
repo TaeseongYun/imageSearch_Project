@@ -16,6 +16,6 @@ interface LoginContract {
     }
 
     interface Presenter{
-       fun createUser(email: String, password: String)
+       fun createUser(name: String, email: String, password: String, correctPassword: String)
     }
 }

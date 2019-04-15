@@ -11,9 +11,9 @@ class LoginPresenter(val view: LoginContract.View,
                      private val mongoRepository: MongoRepository) : LoginContract.Presenter {
 
 
-    override fun createUser(email: String, password: String) {
+    override fun createUser(name: String, email: String, password: String, correctPassword: String) {
         view.showProgressBar()
-        mongoRepository.createUserWithEmail(email, password).enqueue(object : Callback<UserData>{
+        mongoRepository.createUserWithEmail(name, email, password, correctPassword).enqueue(object : Callback<UserData>{
             override fun onResponse(call: Call<UserData>, response: Response<UserData>) {
                 if(response.isSuccessful) {
 

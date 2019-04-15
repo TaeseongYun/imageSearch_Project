@@ -6,5 +6,5 @@ import tech.tsdev.unsplashproject.data.UserData
 
 interface MongoDataSource {
 
-    fun createUserWithEmail(email: String, password: String): Call<UserData>
+    fun createUserWithEmail(name: String, email: String, password: String, correctPassword: String): Call<UserData>
 }

@@ -12,14 +12,14 @@ import tech.tsdev.unsplashproject.R
 class GlideImageView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0)
     : ImageView(context, attrs, defStyleAttr) {
 
-    fun loadImage(url: String, @DrawableRes loadingImageRes: Int = R.drawable.ic_baseline_filter_24px) {
+    fun loadImage(url: String, @DrawableRes loadingImageRes: Int = R.drawable.bg_gradtion) {
         Glide.with(this)
             .load(url)
             .apply( RequestOptions.placeholderOf(loadingImageRes).centerCrop() )
             .into(this)
     }
 
-    fun loadProfileImage(url: String, @DrawableRes loadingImageRes: Int = R.drawable.ic_baseline_filter_24px) {
+    fun loadProfileImage(url: String, @DrawableRes loadingImageRes: Int = R.drawable.bg_gradtion) {
         Glide.with(this)
             .load(url)
             .apply( RequestOptions.placeholderOf(loadingImageRes).circleCrop() )

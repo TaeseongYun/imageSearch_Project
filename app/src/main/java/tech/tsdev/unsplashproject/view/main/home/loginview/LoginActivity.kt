@@ -45,7 +45,7 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
 
         btn_login.setOnClickListener {
             
-            loginPresenter.createUser(tv_user_id.text.toString(), tv_user_pw.text.toString())
+            loginPresenter.createUser(tv_user_name.text.toString(), tv_user_id.text.toString(), tv_user_pw.text.toString(), tv_user_correct_password.text.toString())
         }
 
     }
