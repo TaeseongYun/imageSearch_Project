@@ -1,11 +1,10 @@
 package tech.tsdev.unsplashproject.data.source.image.unsplash
 
-import okhttp3.ResponseBody
+
 import org.json.JSONObject
 import retrofit2.Call
-import tech.tsdev.unsplashproject.data.Download
 import tech.tsdev.unsplashproject.data.LatestPhotos
-import tech.tsdev.unsplashproject.data.PhotosResponse
+import tech.tsdev.unsplashproject.data.RandomSearchPhoto
 
 
 object UnsplashRepository : UnsplashDataSource {
@@ -13,8 +12,8 @@ object UnsplashRepository : UnsplashDataSource {
 
     private val unSplashRemoteData = UnsplashRemoteData()
 
-    override fun getSearchPhoto(keyword: String, page: Int, perPage: Int): Call<PhotosResponse> =
-        unSplashRemoteData.getSearchPhoto(keyword, page, perPage)
+    override fun getSearchPhoto(keyword: String, count: Int): Call<List<RandomSearchPhoto>> =
+        unSplashRemoteData.getSearchPhoto(keyword, count)
 
 
     override fun getPhotoDetail(photoId: String) = unSplashRemoteData.getPhotoDetail(photoId)

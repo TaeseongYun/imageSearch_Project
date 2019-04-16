@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.item_image_view.view.*
 import tech.tsdev.unsplashproject.R
 import tech.tsdev.unsplashproject.data.PhotosResponse
+import tech.tsdev.unsplashproject.data.RandomSearchPhoto
 import tech.tsdev.unsplashproject.data.Result
 import tech.tsdev.unsplashproject.data.Urls
 
@@ -21,12 +22,12 @@ class DetailRecyclerHolder(onClick: (Int)->Unit, context: Context, parent: ViewG
         }
     }
 
-    fun onBind(item: Result) {
+    fun onBind(item: RandomSearchPhoto) {
         itemView.onBind(item)
     }
-    private fun View.onBind(item: Result) {
+    private fun View.onBind(item: RandomSearchPhoto) {
         img_view.loadImage(item.urls.regular)
         iv_user_name.text = item.user.username
-        img_unsplash_user.loadImage(item.user.profile_image.small)
+        img_unsplash_user.loadProfileImage(item.user.profile_image.small)
     }
 }

@@ -3,6 +3,7 @@ package tech.tsdev.unsplashproject.view.main.home.detailsearch.adapter
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
+import tech.tsdev.unsplashproject.data.RandomSearchPhoto
 import tech.tsdev.unsplashproject.data.Result
 import tech.tsdev.unsplashproject.view.main.home.detailsearch.adapter.holder.DetailRecyclerHolder
 import tech.tsdev.unsplashproject.view.main.home.detailsearch.adapter.model.DetailRecyclerModel
@@ -13,15 +14,15 @@ class DetailImageRecyclerAdapter(private val context: Context) : RecyclerView.Ad
 
 
     override lateinit var onClick: (Int) -> Unit
-    private val list = mutableListOf<Result>()
+    private val list = mutableListOf<RandomSearchPhoto>()
 
 
 
-    override fun addItem(imageData: Result) {
+    override fun addItem(imageData: RandomSearchPhoto) {
         list.add(imageData)
     }
 
-    override fun getItem(position: Int): Result = list[position]
+    override fun getItem(position: Int): RandomSearchPhoto = list[position]
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): RecyclerView.ViewHolder{
         return DetailRecyclerHolder(onClick, context, parent)

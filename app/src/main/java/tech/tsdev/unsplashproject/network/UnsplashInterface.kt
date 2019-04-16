@@ -7,21 +7,17 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 import retrofit2.http.Url
-import tech.tsdev.unsplashproject.data.Download
-import tech.tsdev.unsplashproject.data.LatestPhotos
-import tech.tsdev.unsplashproject.data.PhotosResponse
-import tech.tsdev.unsplashproject.data.SinglePhoto
+import tech.tsdev.unsplashproject.data.*
 
 
 interface  UnsplashInterface {
 
-    //검색으로 사진찾는 쿼리
-    @GET("?client_id=YOUR_ACCESS_KEY")
+    //검색으로 사진찾는 쿼리(사진은 랜덤)
+    @GET("/photos/random?client_id=YOUR_ACCESS_KEY")
     fun getUnsplashSearchPhotos(
         @Query("query") query: String,
-        @Query("page") page: Int,
-        @Query("per_page") per_page: Int
-    ): Call<PhotosResponse>
+        @Query("count") page: Int
+    ): Call<List<RandomSearchPhoto>>
 
 
 

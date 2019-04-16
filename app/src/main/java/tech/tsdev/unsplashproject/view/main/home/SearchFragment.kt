@@ -46,6 +46,7 @@ class SearchFragment : Fragment() {
             startActivity(Intent(it.context, DetailSearch::class.java).apply {
                 putExtra("searchKeyword", editText.text.toString())
             })
+            editText.setText("")
         }
 
     }

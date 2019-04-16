@@ -20,20 +20,20 @@ class DetailSearch : AppCompatActivity(), DetailSearchContract.View {
     }
 
     override fun showBottomSheetDialog(positionId: String) {
-        if( isDestroyed) return
+        if (isDestroyed) return
 
         DetailImageBottomSheet.create(positionId).show(this.supportFragmentManager, "DetailImageBottomSheet")
     }
 
 
     override fun showFailmessage() {
-        if ( isDestroyed ) return
+        if (isDestroyed) return
 
         Toast.makeText(this, "Load Fail", Toast.LENGTH_SHORT).show()
     }
 
     override fun showFailmessage(message: String) {
-        if ( isDestroyed ) return
+        if (isDestroyed) return
 
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
@@ -46,19 +46,21 @@ class DetailSearch : AppCompatActivity(), DetailSearchContract.View {
         DetailSearchPresenter(this, UnsplashRepository, detailImageRecyclerAdapter)
     }
 
-    private val recyclerViewOnScrollListener = object: RecyclerView.OnScrollListener() {
+    private val recyclerViewOnScrollListener = object : RecyclerView.OnScrollListener() {
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
             super.onScrolled(recyclerView, dx, dy)
 
             val visibleItem = recyclerView.childCount
             val totalItemCount = detailImageRecyclerAdapter.itemCount
-            val firstVisibleItem = (recyclerView.layoutManager as? GridLayoutManager)?.findFirstVisibleItemPosition() ?: 0
+            val firstVisibleItem =
+                (recyclerView.layoutManager as? GridLayoutManager)?.findFirstVisibleItemPosition() ?: 0
 
-            if(!detailSearchPresenter.isLoading && (firstVisibleItem - visibleItem) >= totalItemCount - 18) {
+            if (!detailSearchPresenter.isLoading && (firstVisibleItem - visibleItem) >= totalItemCount - 18) {
                 detailSearchPresenter.loadUnsplashImage(intent.getStringExtra("searchKeyword"))
             }
         }
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_search)
@@ -70,7 +72,9 @@ class DetailSearch : AppCompatActivity(), DetailSearchContract.View {
         //app_bar 키워드 띄워주는 함수
         loadSerachKeyword(intent.getStringExtra("searchKeyword"))
 
-        img_search_close_btn.setOnClickListener { finish() }
+        img_search_close_btn.setOnClickListener {
+            finish()
+        }
 
         recycler_view_detail.run {
             adapter = detailImageRecyclerAdapter

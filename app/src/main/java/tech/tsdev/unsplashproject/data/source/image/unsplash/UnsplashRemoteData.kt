@@ -16,7 +16,7 @@ class UnsplashRemoteData : UnsplashDataSource {
 
 
     companion object {
-        const val UNSPLASH_URL = "https://api.unsplash.com/search/photos/"
+        const val UNSPLASH_URL = "https://api.unsplash.com/"
         const val UNSPLASH_USERNAME = "https://api.unsplash.com/photos/"
     }
 
@@ -29,8 +29,8 @@ class UnsplashRemoteData : UnsplashDataSource {
 
     private val unSplashInterfaceDownloadImg = createRetrofit(UnsplashInterface::class.java, UNSPLASH_USERNAME)
 
-    override fun getSearchPhoto(keyword: String, page: Int, perPage: Int) =
-        unSplashInterface.getUnsplashSearchPhotos(keyword, page, perPage)
+    override fun getSearchPhoto(keyword: String, count: Int) =
+        unSplashInterface.getUnsplashSearchPhotos(keyword, count)
 
     override fun getPhotoDetail(photoId: String) =
         unSplashInterfaceDetailUser.getDetailInfo(photoId)

@@ -9,7 +9,7 @@ import tech.tsdev.unsplashproject.data.*
 
 interface UnsplashDataSource {
 
-    fun getSearchPhoto(keyword: String, page:Int, perPage: Int): Call<PhotosResponse>
+    fun getSearchPhoto(keyword: String, count:Int): Call<List<RandomSearchPhoto>>
 
     fun getPhotoDetail(photoId: String): Call<SinglePhoto>
 

@@ -17,7 +17,7 @@
                                            android:layout_height="?attr/actionBarSize"
                                            app:contentInsetStart="0dp"
                                            app:contentInsetEnd="0dp"
-                                           android:background="#6200EE">
+                                           android:background="@color/colorPrimary">
 
             <android.support.constraint.ConstraintLayout android:layout_width="match_parent"
                                                          android:layout_height="wrap_content">
