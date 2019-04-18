@@ -21,10 +21,11 @@ class LatestPictureHolder(onClick: (Int) -> Unit, context: Context, parent: View
     }
 
     fun onBind(item: LatestPhotos) {
-        itemView.onBind(item)
+        itemView onBind item
     }
 
-    private fun View.onBind(item: LatestPhotos) {
+    //중위 표현
+    private infix fun View.onBind(item: LatestPhotos) {
         img_view.loadImage(item.urls.regular)
         img_unsplash_user.loadProfileImage(item.user.profile_image.small)
         iv_user_name.text = item.user.username

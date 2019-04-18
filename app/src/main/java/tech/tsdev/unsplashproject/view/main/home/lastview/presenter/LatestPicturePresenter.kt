@@ -41,13 +41,13 @@ class LatestPicturePresenter(
                 override fun onResponse(call: Call<List<LatestPhotos>>, response: Response<List<LatestPhotos>>?) {
                     if (response?.isSuccessful == true) {
                         response.body()?.let {
-                            it.forEach { latesphotos ->
-                                latestImageRecyclerModel.addItem(latesphotos)
+                            it.forEach { latePhotos ->
+                                latestImageRecyclerModel.addItem(latePhotos)
                             }
 
                             latestImageRecyclerModel.notifyDataChange()
                         } ?: let {
-                            view.showLoadFail("Code erros")
+                            view.showLoadFail("Code errors")
                         }
                     } else {
                         view.showLoadFail()

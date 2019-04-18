@@ -43,6 +43,8 @@ class DetailSearchPresenter(
                                 detailImageRecyclerModel.addItem(randomPhoto)
                             }
                             detailImageRecyclerModel.notifyDataChange()
+                        } ?: let {
+                            view.showFailmessage("Code Error")
                         }
                         page += 10
                     } else {

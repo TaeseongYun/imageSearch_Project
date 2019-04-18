@@ -9,10 +9,10 @@
     <item
             android:id="@+id/navigation_random"
             android:icon="@drawable/ic_sharp_insert_photo_24px"
-            android:title="@string/title_random_picture"/>
+            android:title="@string/button_search"/>
 
     <item
             android:id="@+id/navigation_setting"
-            android:icon="@drawable/ic_sharp_settings_24px"
-            android:title="@string/title_setting"/>
+            android:icon="@drawable/ic_shuffle_white_24dp"
+            android:title="@string/title_random_picture"/>
 </menu>

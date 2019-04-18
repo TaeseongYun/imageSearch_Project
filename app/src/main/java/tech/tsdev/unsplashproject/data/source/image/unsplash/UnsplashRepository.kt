@@ -4,10 +4,12 @@ package tech.tsdev.unsplashproject.data.source.image.unsplash
 import org.json.JSONObject
 import retrofit2.Call
 import tech.tsdev.unsplashproject.data.LatestPhotos
+import tech.tsdev.unsplashproject.data.RandomPhoto
 import tech.tsdev.unsplashproject.data.RandomSearchPhoto
 
 
 object UnsplashRepository : UnsplashDataSource {
+
 
 
     private val unSplashRemoteData = UnsplashRemoteData()
@@ -22,4 +24,6 @@ object UnsplashRepository : UnsplashDataSource {
         unSplashRemoteData.getLatestPhoto(page, per_page)
 
     override fun getDownloadImg(userId: String): Call<JSONObject> = unSplashRemoteData.getDownloadImg(userId)
+
+    override fun getRandomPhoto(count: Int): Call<List<RandomPhoto>> = unSplashRemoteData.getRandomPhoto(count)
 }

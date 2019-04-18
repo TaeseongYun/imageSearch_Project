@@ -14,7 +14,7 @@ import tech.tsdev.unsplashproject.util.replace
 import tech.tsdev.unsplashproject.view.main.home.SearchFragment
 import tech.tsdev.unsplashproject.view.main.home.lastview.LatestPictureFragment
 import tech.tsdev.unsplashproject.view.main.home.loginview.LoginActivity
-import tech.tsdev.unsplashproject.view.main.home.settingview.SettingFragment
+import tech.tsdev.unsplashproject.view.main.home.randomview.RandomPictureFragment
 
 
 class MainActivity : AppCompatActivity() {
@@ -27,12 +27,8 @@ class MainActivity : AppCompatActivity() {
         LatestPictureFragment()
     }
 
-    private val settingFragment: SettingFragment by lazy {
-        SettingFragment().apply {
-            arguments = Bundle().apply {
-                putInt(SettingFragment.KEY_TITLE, R.string.title_setting)
-            }
-        }
+    private val randomPictureFragment: RandomPictureFragment by lazy {
+        RandomPictureFragment()
     }
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
@@ -46,7 +42,7 @@ class MainActivity : AppCompatActivity() {
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_setting -> {
-                replace(R.id.frameLayout, settingFragment)
+                replace(R.id.frameLayout, randomPictureFragment)
                 return@OnNavigationItemSelectedListener true
             }
         }

@@ -4,15 +4,13 @@ package tech.tsdev.unsplashproject.data.source.image.unsplash
 import okhttp3.ResponseBody
 import org.json.JSONObject
 import retrofit2.Call
-import tech.tsdev.unsplashproject.data.Download
-import tech.tsdev.unsplashproject.data.LatestPhotos
-import tech.tsdev.unsplashproject.data.PhotosResponse
-import tech.tsdev.unsplashproject.data.Result
+import tech.tsdev.unsplashproject.data.*
 import tech.tsdev.unsplashproject.network.UnsplashInterface
 import tech.tsdev.unsplashproject.network.createRetrofit
 
 
 class UnsplashRemoteData : UnsplashDataSource {
+
 
 
     companion object {
@@ -40,4 +38,7 @@ class UnsplashRemoteData : UnsplashDataSource {
 
     override fun getDownloadImg(userId: String): Call<JSONObject> =
         unSplashInterfaceDownloadImg.getDownloadImage(userId)
+
+    override fun getRandomPhoto(count: Int): Call<List<RandomPhoto>> =
+            unSplashInterface.getRandomPhoto(count)
 }

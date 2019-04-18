@@ -16,4 +16,6 @@ interface UnsplashDataSource {
     fun getLatestPhoto(page: Int, per_page: Int): Call<List<LatestPhotos>>
 
     fun getDownloadImg(userId: String): Call<JSONObject>
+
+    fun getRandomPhoto(count: Int): Call<List<RandomPhoto>>
 }

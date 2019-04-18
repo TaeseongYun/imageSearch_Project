@@ -23,4 +23,6 @@
     <string name="need_permision">사진을 다운받기 위해서는 권한이 필요합니다.
         권한을 거부 할경우 앱이 종료 됩니다.
     </string>
+
+    <string name="show_Random_Picture">RandomPicture</string>
 </resources>
