@@ -10,8 +10,6 @@ import tech.tsdev.unsplashproject.data.RandomSearchPhoto
 
 object UnsplashRepository : UnsplashDataSource {
 
-
-
     private val unSplashRemoteData = UnsplashRemoteData()
 
     override fun getSearchPhoto(keyword: String, count: Int): Call<List<RandomSearchPhoto>> =
@@ -26,4 +24,5 @@ object UnsplashRepository : UnsplashDataSource {
     override fun getDownloadImg(userId: String): Call<JSONObject> = unSplashRemoteData.getDownloadImg(userId)
 
     override fun getRandomPhoto(count: Int): Call<List<RandomPhoto>> = unSplashRemoteData.getRandomPhoto(count)
+
 }
