@@ -23,11 +23,13 @@ class LatestPicturePresenter(
         latestImageRecyclerModel.onClick = { position ->
             view.showBottomSheetDialog(latestImageRecyclerModel.getItem(position).id)
         }
+
+        view.showProgressbar()
     }
 
     override fun loadImage() {
         isLoading = true
-        view.showProgressbar()
+
 
         unSplashRepository.getLatestPhoto(++page, perPage)
             .enqueue(object : Callback<List<LatestPhotos>> {

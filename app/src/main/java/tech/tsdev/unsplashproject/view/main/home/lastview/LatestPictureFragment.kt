@@ -51,15 +51,16 @@ class LatestPictureFragment : Fragment(), LatestPictureContract.View {
     }
 
     override fun hideProgressbar() {
-        progressBar.visibility = View.INVISIBLE
+        progress_bar_latest.visibility = View.GONE
     }
 
     override fun showProgressbar() {
-        progressBar.visibility = View.VISIBLE
+        progress_bar_latest.visibility = View.VISIBLE
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
+
         recycler_view?.removeOnScrollListener(recyclerViewOnScrollListener)
     }
 
@@ -83,7 +84,7 @@ class LatestPictureFragment : Fragment(), LatestPictureContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        progressBar.visibility = View.VISIBLE
+
         latestPicturePresenter.loadImage()
 
         recycler_view.run {

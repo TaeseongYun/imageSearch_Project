@@ -1,5 +1,6 @@
 package tech.tsdev.unsplashproject.view.main.home.randomview
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
@@ -15,6 +16,7 @@ import tech.tsdev.unsplashproject.view.main.home.detailbottomsheet.DetailImageBo
 import tech.tsdev.unsplashproject.view.main.home.randomview.adapter.RandomPictureAdapater
 import tech.tsdev.unsplashproject.view.main.home.randomview.presenter.RandomPictureContract
 import tech.tsdev.unsplashproject.view.main.home.randomview.presenter.RandomPicturePresenter
+import java.lang.Exception
 
 class RandomPictureFragment : Fragment(), RandomPictureContract.View {
 
@@ -30,11 +32,11 @@ class RandomPictureFragment : Fragment(), RandomPictureContract.View {
     }
 
     override fun showProgressbar() {
-        progressBar_random.visibility = View.VISIBLE
+        progress_bar_layout.visibility = View.VISIBLE
     }
 
     override fun dismissProgressbar() {
-        progressBar_random.visibility = View.GONE
+        progress_bar_layout.visibility = View.GONE
     }
 
     override fun showErrorMessage() {
@@ -57,6 +59,7 @@ class RandomPictureFragment : Fragment(), RandomPictureContract.View {
         recycler_view_random.removeOnScrollListener(recyclerViewScrollListener)
 
     }
+
     private val recyclerViewScrollListener = object : RecyclerView.OnScrollListener() {
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
             super.onScrolled(recyclerView, dx, dy)
@@ -66,7 +69,7 @@ class RandomPictureFragment : Fragment(), RandomPictureContract.View {
             val firstVisibleItem =
                 (recyclerView.layoutManager as? GridLayoutManager)?.findFirstVisibleItemPosition() ?: 0
 
-            if(!randomPicturePresenter.isLoading && (firstVisibleItem + visibleItemCount) >=  totalItemCount - 7) {
+            if (!randomPicturePresenter.isLoading && (firstVisibleItem + visibleItemCount) >= totalItemCount - 7) {
                 randomPicturePresenter.loadRandomImage()
             }
         }
@@ -75,10 +78,11 @@ class RandomPictureFragment : Fragment(), RandomPictureContract.View {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
         inflater.inflate(R.layout.fragment_random, container, false)
 
+    @SuppressLint("ResourceAsColor")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        progressBar_random.visibility = View.VISIBLE
+
         randomPicturePresenter.loadRandomImage()
 
         recycler_view_random.run {
@@ -88,5 +92,13 @@ class RandomPictureFragment : Fragment(), RandomPictureContract.View {
         }
 
 
+
+        swipe_refresh_layout.setOnRefreshListener {
+            randomRecyclerViewAdapter.removeItem()
+            randomPicturePresenter.loadRandomImage()
+
+            swipe_refresh_layout.setColorSchemeColors(R.color.black)
+            swipe_refresh_layout.isRefreshing = false
+        }
     }
 }

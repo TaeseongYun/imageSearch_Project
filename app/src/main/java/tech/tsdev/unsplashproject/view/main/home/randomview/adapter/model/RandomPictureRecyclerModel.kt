@@ -6,6 +6,8 @@ interface RandomPictureRecyclerModel {
 
     fun addItem(item: RandomPhoto)
 
+    fun removeItem()
+
     fun getItem(position: Int): RandomPhoto
 
     fun notifyDataChanged()

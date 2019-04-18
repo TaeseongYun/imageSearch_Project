@@ -20,14 +20,16 @@ class RandomPicturePresenter(
         randomPictureRecyclerModel.onClick = { position ->
             view.showBottomSheet(randomPictureRecyclerModel.getItem(position).id)
         }
+
+        //처음 액티비티 실행 될때만 Progress_bar 보이게 하려고 init 초기화 블록에다 showProgressbar() 넣어줌줌
+       view.showProgressbar()
     }
-
-
 
 
     override fun loadRandomImage() {
         isLoading = true
-        view.showProgressbar()
+
+
 
         unsplashRepository.getRandomPhoto(_count).enqueue(object : Callback<List<RandomPhoto>> {
             override fun onFailure(call: Call<List<RandomPhoto>>, t: Throwable) {

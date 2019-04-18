@@ -10,6 +10,7 @@ import tech.tsdev.unsplashproject.view.main.home.randomview.adapter.model.Random
 class RandomPictureAdapater(private val context: Context?) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>(), RandomPictureRecyclerModel {
 
+
     val list = mutableListOf<RandomPhoto>()
 
     override lateinit var onClick: (Int) -> Unit
@@ -24,6 +25,10 @@ class RandomPictureAdapater(private val context: Context?) :
 
     override fun addItem(item: RandomPhoto) {
         list.add(item)
+    }
+
+    override fun removeItem() {
+        list.clear()
     }
 
     override fun getItem(position: Int): RandomPhoto = list[position]
