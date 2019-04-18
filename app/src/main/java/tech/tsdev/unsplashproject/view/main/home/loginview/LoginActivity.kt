@@ -4,7 +4,6 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 import tech.tsdev.unsplashproject.R
 import tech.tsdev.unsplashproject.data.source.image.mongodb.MongoRepository

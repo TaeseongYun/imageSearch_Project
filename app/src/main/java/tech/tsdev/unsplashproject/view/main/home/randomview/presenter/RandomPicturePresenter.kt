@@ -10,8 +10,11 @@ import tech.tsdev.unsplashproject.view.main.home.randomview.adapter.model.Random
 class RandomPicturePresenter(
     val view: RandomPictureContract.View,
     val randomPictureRecyclerModel: RandomPictureRecyclerModel,
-    val unsplashRepository: UnsplashRepository
+    private val unsplashRepository: UnsplashRepository
 ) : RandomPictureContract.Presenter {
+
+    private var _count = 30
+    var isLoading = false
 
     init {
         randomPictureRecyclerModel.onClick = { position ->
@@ -19,14 +22,16 @@ class RandomPicturePresenter(
         }
     }
 
-    private var _count = 30
-    var isLoading = false
+
+
+
     override fun loadRandomImage() {
         isLoading = true
-        view.dismissProgressbar()
+        view.showProgressbar()
+
         unsplashRepository.getRandomPhoto(_count).enqueue(object : Callback<List<RandomPhoto>> {
             override fun onFailure(call: Call<List<RandomPhoto>>, t: Throwable) {
-                view.showProgressbar()
+                view.dismissProgressbar()
                 view.showErrorMessage()
 
                 isLoading = false
@@ -38,6 +43,8 @@ class RandomPicturePresenter(
                         randomPhotoList.forEach { randomPhoto ->
                             randomPictureRecyclerModel.addItem(randomPhoto)
                         }
+
+                        randomPictureRecyclerModel.notifyDataChanged()
                     } ?: let {
                         view.showErrorMessage("Code errors")
                     }

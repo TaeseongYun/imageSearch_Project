@@ -9,10 +9,9 @@ import kotlinx.android.synthetic.main.item_image_view.view.*
 import tech.tsdev.unsplashproject.R
 import tech.tsdev.unsplashproject.data.RandomPhoto
 
-class RandomPictureHolder(onClick: (Int) -> Unit, context: Context, parent: ViewGroup) :
-    RecyclerView.ViewHolder(
-        LayoutInflater.from(context).inflate(R.layout.item_image_view, parent, false)
-    ) {
+class RandomPictureHolder(onClick: (Int) -> Unit, context: Context, parent: ViewGroup?) : RecyclerView.ViewHolder(
+    LayoutInflater.from(context).inflate(R.layout.item_image_view, parent, false)
+) {
 
     init {
         itemView.setOnClickListener {
@@ -24,7 +23,7 @@ class RandomPictureHolder(onClick: (Int) -> Unit, context: Context, parent: View
         itemView.onBind(item)
     }
 
-    fun View.onBind(item: RandomPhoto) {
+    private fun View.onBind(item: RandomPhoto) {
         img_view.loadImage(item.urls.regular)
         img_unsplash_user.loadProfileImage(item.user.profile_image.medium)
         iv_user_name.text = item.user.username

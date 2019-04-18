@@ -10,9 +10,9 @@ import tech.tsdev.unsplashproject.R
 import tech.tsdev.unsplashproject.data.LatestPhotos
 import tech.tsdev.unsplashproject.data.Result
 
-class LatestPictureHolder(onClick: (Int) -> Unit, context: Context, parent: ViewGroup?)
-    : RecyclerView.ViewHolder(
-    LayoutInflater.from(context).inflate(R.layout.item_image_view, parent, false)){
+class LatestPictureHolder(onClick: (Int) -> Unit, context: Context, parent: ViewGroup?) : RecyclerView.ViewHolder(
+    LayoutInflater.from(context).inflate(R.layout.item_image_view, parent, false)
+) {
 
     init {
         itemView.setOnClickListener {
